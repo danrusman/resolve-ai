@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # 1. Banco de Dados NoSQL - MongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: resolve_ai_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: resolve_admin
+      MONGO_INITDB_ROOT_PASSWORD: resolve_password
+    volumes:
+      - mongo_data:/data/db
+
+  # 2. Interface Visual para o MongoDB (Acesse http://localhost:8081)
+  mongo-express:
+    image: mongo-express:latest
+    container_name: resolve_ai_mongo_express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: resolve_admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: resolve_password
+      ME_CONFIG_MONGODB_URL: mongodb://resolve_admin:resolve_password@mongodb:27017/
+    depends_on:
+      - mongodb
+
+  # 3. Backend (Node.js API)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: resolve_ai_backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      MONGO_URI: "mongodb://resolve_admin:resolve_password@mongodb:27017/resolve_ai_db?authSource=admin"
+      JWT_SECRET: "secreto_super_seguro_hackathon"
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  # 4. Frontend (React + Vite)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: resolve_ai_frontend
+    restart: always
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  mongo_data:
