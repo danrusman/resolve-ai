@@ -1,7 +1,6 @@
 import express from 'express';
 import Occurrence from '../models/Occurrence.js';
 import History from '../models/History.js';
-//import authMiddleware from '../middlewares/auth.js';
 import { authenticateToken, authorizeRoles } from '../middlewares/auth.js';
 
 const router = express.Router();
@@ -47,7 +46,7 @@ router.post('/', authenticateToken, async (req, res) => {
 });
 
 // 2. GET /api/occurrences - Listar Ocorrências (Com Filtros)
-// Solicitante vê as suas; Gestor pode ver todas ou filtrar.
+// Solicitante vê as suas e Gestor pode ver todas ou filtrar.
 router.get('/', authenticateToken, async (req, res) => {
   try {
     const { category, status, priority } = req.query;

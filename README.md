@@ -54,9 +54,9 @@ Toda alteração no ciclo de vida de uma ocorrência dispara a gravação autom�
 
 ## 🛠️ Como Executar o Projeto
 
-Com o Docker e Docker Compose instalados, execute o comando abaixo na raiz do repositório:
+Para localmente, com o Docker e Docker Compose instalados, execute o comando abaixo na raiz do repositório:
 
-docker-compose up --build
+``docker-compose up --build``
 
 Endereços dos Serviços:
 Frontend (React): http://localhost:5173
@@ -67,37 +67,55 @@ Mongo Express (Painel do Banco): http://localhost:8081 (Usuário/Senha: resolve_
 
 MongoDB Database: mongodb://resolve_admin:resolve_password@localhost:27017/resolve_ai_db?authSource=admin
 
+Para remotamente, acesse o site:
+https://resolve-ai-fiap.netlify.app/
+
+Para fins de conferência, há dois perfis disponíveis:
+
+| Campo | Perfil de Solicitante | Perfil de Gestor |
+| :--- | :--- | :--- |
+| **E-mail** | teste@email.com | gestor@email.com |
+| **Senha** | 123 | 123 |
+
 ### 🧪 Executando os Testes Automatizados
 O projeto possui uma suíte de testes de integração cobrindo os fluxos de autenticação, criação de ocorrências e controle de rotas.
 
 Opção 1: Executar via Docker (Recomendado)
 Com os containers em execução, rode os testes diretamente dentro do container do backend:\
 
-docker-compose exec backend npm test
+``docker-compose exec backend npm test ``
 
 Opção 2: Executar Localmente
 Na pasta backend, execute:
 
-cd backend
-npm test
+``cd backend`` <br>
+``npm test`` 
 
-📌 Principais Endpoints da API
+### 📌 Principais Endpoints da API
 
-Autenticação (/api/auth)
+### Autenticação (/api/auth)
 
-Método,Endpoint,Proteção,Descrição
-POST,/api/auth/register,Pública,Cadastro de novos usuários (SOLICITANTE ou GESTOR)
-POST,/api/auth/login,Pública,Autenticação e geração do Token JWT
+|Método|Endpoint|Proteção|Descrição|
+| ----------- | ----------- | ----------- | ----------- |
+POST|/api/auth/register|Pública|Cadastro de novos usuários (SOLICITANTE ou GESTOR)
+POST|/api/auth/login|Pública|Autenticação e geração do Token JWT
 
-Ocorrências (/api/occurrences)
-Método,Endpoint,Proteção,Descrição
-POST,/api/occurrences,Autenticado,Criar nova ocorrência
-GET,/api/occurrences,Autenticado,Listar ocorrências (filtra por criador se for Solicitante)
-GET,/api/occurrences/:id,Autenticado,Obter detalhes e histórico auditável da ocorrência
-PATCH,/api/occurrences/:id/status,Gestor,"Alterar status, prioridade e responsável"
-POST,/api/occurrences/:id/comments,Autenticado,Adicionar comentário
-PATCH,/api/occurrences/:id/evaluate,Solicitante,Registrar nota e avaliação da resolução
+### Ocorrências (/api/occurrences)
+Método|Endpoint|Proteção|Descrição|
+| ----------- | ----------- | ----------- | ----------- |
+POST|/api/occurrences|Autenticado|Criar nova ocorrência
+GET|/api/occurrences|Autenticado|Listar ocorrências (filtra por criador se for Solicitante)
+GET|/api/occurrences/:id|Autenticado|Obter detalhes e histórico auditável da ocorrência
+PATCH|/api/occurrences/:id/status|Gestor|"Alterar status| prioridade e responsável
+POST|/api/occurrences/:id/comments|Autenticado|Adicionar comentário
+PATCH|/api/occurrences/:id/evaluate|Solicitante|Registrar nota e avaliação da resolução
 
-Dashboard (/api/dashboard)
-Método,Endpoint,Proteção,Descrição
-GET,/api/dashboard/metrics,Gestor,Retorna os contadores e métricas agregadas por status
+### Dashboard (/api/dashboard)
+Método|Endpoint|Proteção|Descrição
+| ----------- | ----------- | ----------- | ----------- |
+GET|/api/dashboard/metrics|Gestor|Retorna os contadores e métricas agregadas por status
+
+## Serviços utilizados
+- Fronte-end: https://app.netlify.com/
+- Back-end: https://railway.com/
+- Banco de dados: https://cloud.mongodb.com/

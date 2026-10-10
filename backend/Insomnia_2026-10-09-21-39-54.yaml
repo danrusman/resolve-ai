@@ -1,0 +1,233 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Hackathon
+meta:
+  id: wrk_f5888b3074d447e3bbc7f8072b77ae95
+  created: 1791490219873
+  modified: 1791490219873
+  description: ""
+collection:
+  - url: http://localhost:3000/api/auth/register
+    name: Solicitante
+    meta:
+      id: req_11e574a5248a471494a7803bd9f3b426
+      created: 1791490332696
+      modified: 1791576468311
+      isPrivate: false
+      description: ""
+      sortKey: -1791491905152
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "name": "Maria Solicitante",
+          "email": "maria@email.com",
+          "password": "senha123",
+          "role": "SOLICITANTE"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/auth/register
+    name: Gestor
+    meta:
+      id: req_848daa187b7f44adab5d837da7e75b83
+      created: 1791490421053
+      modified: 1791576485569
+      isPrivate: false
+      description: ""
+      sortKey: -1791491905102
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "name": "Carlos Gestor",
+          "email": "carlos@email.com",
+          "password": "senha123",
+          "role": "GESTOR"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/auth/login
+    name: Login
+    meta:
+      id: req_57b315dbcce646e1880252182773a0c1
+      created: 1791490445602
+      modified: 1791576508204
+      isPrivate: false
+      description: ""
+      sortKey: -1791491905077
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "email": "maria@email.com",
+          "password": "senha123"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/auth/me
+    name: Auth
+    meta:
+      id: req_417e657b031945b48b108bb54fe81670
+      created: 1791490477715
+      modified: 1791592743213
+      isPrivate: false
+      description: ""
+      sortKey: -1791491905064.5
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication:
+      type: bearer
+      token: ""
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/occurrences
+    name: Occurrence
+    meta:
+      id: req_472a6ddc7e474737a4bae2ac35190048
+      created: 1791491811805
+      modified: 1791576626179
+      isPrivate: false
+      description: ""
+      sortKey: -1791491905055.125
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/occurrences
+    name: Occurrence
+    meta:
+      id: req_027325f000114456b565f85d6acc9cbf
+      created: 1791491850134
+      modified: 1791576596900
+      isPrivate: false
+      description: ""
+      sortKey: -1791491905058.25
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "title": "Vazamento no Banheiro",
+          "description": "Cano estourado no 2º andar",
+          "category": "Manutenção",
+          "location": "Bloco B - Banheiro Principal",
+          "imageUrl": "https://exemplo.com/imagem.jpg"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/occurrences/<ID_DA_OCORRENCIA>/status
+    name: Atualizar Status
+    meta:
+      id: req_08f841335a094bc19f87e1a5271e4c65
+      created: 1791491882436
+      modified: 1791576626659
+      isPrivate: false
+      description: ""
+      sortKey: -1791491905053.5625
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "status": "EM_ANALISE",
+          "priority": "ALTA",
+          "observation": "Encaminhado para a equipe de manutenção elétrica."
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/api/occurrences/<ID_DA_OCORRENCIA>
+    name: History
+    meta:
+      id: req_9ba8928754134839b2dfb1e3b7149db5
+      created: 1791491905052
+      modified: 1791491914211
+      isPrivate: false
+      description: ""
+      sortKey: -1791491905052
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_c5cdd560ee50025dc75e0f926bfcd75d32d4705c
+    created: 1791490219876
+    modified: 1791490219876
+environments:
+  name: Base Environment
+  meta:
+    id: env_c5cdd560ee50025dc75e0f926bfcd75d32d4705c
+    created: 1791490219875
+    modified: 1791490219875
+    isPrivate: false
